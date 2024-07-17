@@ -1,2 +1,3 @@
 # HashedBit Assignments
 
+Naitik Patel
