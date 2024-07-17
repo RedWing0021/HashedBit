@@ -1,3 +1,0 @@
-# HashedBit
-
-Assignments
