@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Theme Toggle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-theme {
+            background-color: black;
+            color: white;
+        }
+
+        button {
+            margin: 20px;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <button id="toggleTheme">Toggle Dark Theme</button>
+    <div id="content">
+        <p>This is some content that will be affected by the theme.</p>
+    </div>
+    <script>
+        document.getElementById('toggleTheme').addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Style Manipulation</title>
+    <style>
+        #text-container {
+            font-size: 55px;
+            transition: all 0.3s;
+        }
+        .stylebt {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class='text-here' id='text-container'>This is some example text</div>
+
+    <input type="text" id="colorbox" placeholder="Enter a color">
+    <button id="colorchange">Change Colour</button>
+    <br><br>
+
+    <input type="range" id="fontsize" min="10" max="100" value="55">
+    <br><br>
+
+    <button id="italic" class="stylebt">Italics</button>
+    <button id="underline" class="stylebt">Underline</button>
+    <button id="bold" class="stylebt">Bold</button>
+    <br><br>
+
+    <select id="list">
+        <option value="serif">Serif</option>
+        <option value="sans-serif">Sans-Serif</option>
+        <option value="monospace">Monospace</option>
+        <option value="cursive">Cursive</option>
+        <option value="fantasy">Fantasy</option>
+    </select>
+    <br><br>
+
+    <button id="getstyle">Get CSS</button>
+    <br><br>
+
+    <p id="css-props"></p>
+
+    <script>
+        const textContainer = document.getElementById('text-container');
+        const colorBox = document.getElementById('colorbox');
+        const colorChangeButton = document.getElementById('colorchange');
+        const fontSizeSlider = document.getElementById('fontsize');
+        const italicButton = document.getElementById('italic');
+        const underlineButton = document.getElementById('underline');
+        const boldButton = document.getElementById('bold');
+        const fontList = document.getElementById('list');
+        const getStyleButton = document.getElementById('getstyle');
+        const cssProps = document.getElementById('css-props');
+
+        // Change color
+        colorChangeButton.addEventListener('click', () => {
+            textContainer.style.color = colorBox.value;
+        });
+
+        // Change font size
+        fontSizeSlider.addEventListener('input', () => {
+            textContainer.style.fontSize = `${fontSizeSlider.value}px`;
+        });
+
+        // Toggle italic style
+        italicButton.addEventListener('click', () => {
+            textContainer.style.fontStyle = textContainer.style.fontStyle === 'italic' ? 'normal' : 'italic';
+        });
+
+        // Toggle underline style
+        underlineButton.addEventListener('click', () => {
+            textContainer.style.textDecoration = textContainer.style.textDecoration === 'underline' ? 'none' : 'underline';
+        });
+
+        // Toggle bold style
+        boldButton.addEventListener('click', () => {
+            textContainer.style.fontWeight = textContainer.style.fontWeight === 'bold' ? 'normal' : 'bold';
+        });
+
+        // Change font family
+        fontList.addEventListener('change', () => {
+            textContainer.style.fontFamily = fontList.value;
+        });
+
+        // Get CSS properties
+        getStyleButton.addEventListener('click', () => {
+            const styles = window.getComputedStyle(textContainer);
+            const cssProperties = `
+                color: ${styles.color}; 
+                font-size: ${styles.fontSize}; 
+                font-style: ${styles.fontStyle}; 
+                font-weight: ${styles.fontWeight}; 
+                text-decoration: ${styles.textDecoration}; 
+                font-family: ${styles.fontFamily};
+            `;
+            cssProps.textContent = cssProperties.replace(/;\s+/g, '; ');
+        });
+    </script>
+
+</body>
+</html>
